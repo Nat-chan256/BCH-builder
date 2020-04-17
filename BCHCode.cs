@@ -64,7 +64,7 @@ namespace BChH
         public BCHCode(int n, int m, int d, BinaryString alpha, BinaryString polynomial, Form3 previous_form)
         {
             text_ = "Построим код БЧХ для следующих параметров: n = " + n
-                + ", m = " + m + ", d = " + d;
+                + ", d = " + d;
             d_ = d;
             n_ = n;
             alpha_ = alpha;
@@ -74,6 +74,9 @@ namespace BChH
             int s = (int)(Math.Pow(2, m) - 1) / n;
 
             text_ += ",  α = " + alpha.transformToPolynomial() + ", P(x) = " + galois_field_.polynomial.transformToPolynomial();
+
+            text_ += "\n\nНаходим минимальное число m, такое, что n | 2^m - 1. m = " + m;
+
             text_ += "\n\nНаходим s по формуле: s = ((2^m) - 1)/n, s = " + s;
 
             //Формируем элементы β, β^2,...,β^(d-1)

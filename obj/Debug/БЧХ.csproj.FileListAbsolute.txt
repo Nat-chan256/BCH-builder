@@ -10,3 +10,16 @@ C:\Учёбка и не учёбка\Учеба\Конструирование �
 C:\Учёбка и не учёбка\Учеба\Конструирование алгоритмов и структур данных\Практика\БЧХ\obj\Debug\BChH.Form2.resources
 C:\Учёбка и не учёбка\Учеба\Конструирование алгоритмов и структур данных\Практика\БЧХ\obj\Debug\BChH.Form3.resources
 C:\Учёбка и не учёбка\Учеба\Конструирование алгоритмов и структур данных\Практика\БЧХ\obj\Debug\BChH.Form4.resources
+C:\Учёбка и не учёбка\Проги\Git Repositories\BCH-builder\bin\Debug\БЧХ.exe.config
+C:\Учёбка и не учёбка\Проги\Git Repositories\BCH-builder\bin\Debug\БЧХ.exe
+C:\Учёбка и не учёбка\Проги\Git Repositories\BCH-builder\bin\Debug\БЧХ.pdb
+C:\Учёбка и не учёбка\Проги\Git Repositories\BCH-builder\obj\Debug\БЧХ.csprojAssemblyReference.cache
+C:\Учёбка и не учёбка\Проги\Git Repositories\BCH-builder\obj\Debug\BChH.Form1.resources
+C:\Учёбка и не учёбка\Проги\Git Repositories\BCH-builder\obj\Debug\BChH.Form2.resources
+C:\Учёбка и не учёбка\Проги\Git Repositories\BCH-builder\obj\Debug\BChH.Form3.resources
+C:\Учёбка и не учёбка\Проги\Git Repositories\BCH-builder\obj\Debug\BChH.Form4.resources
+C:\Учёбка и не учёбка\Проги\Git Repositories\BCH-builder\obj\Debug\БЧХ.Properties.Resources.resources
+C:\Учёбка и не учёбка\Проги\Git Repositories\BCH-builder\obj\Debug\БЧХ.csproj.GenerateResource.cache
+C:\Учёбка и не учёбка\Проги\Git Repositories\BCH-builder\obj\Debug\БЧХ.exe
+C:\Учёбка и не учёбка\Проги\Git Repositories\BCH-builder\obj\Debug\БЧХ.pdb
+C:\Учёбка и не учёбка\Проги\Git Repositories\BCH-builder\obj\Debug\БЧХ.csproj.CoreCompileInputs.cache
