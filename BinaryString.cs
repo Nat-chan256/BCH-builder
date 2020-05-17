@@ -196,14 +196,16 @@ namespace BChH
         {
             if (bin_str1.cutUnsignificantZeros().size() < bin_str2.cutUnsignificantZeros().size()) return bin_str1;
 
-            BinaryString dividend = bin_str1.cutUnsignificantZeros();
-            BinaryString divider = bin_str2.cutUnsignificantZeros();
-           
+            BinaryString dividend = bin_str1.cutUnsignificantZeros(); //Делимое
+            BinaryString divider = bin_str2.cutUnsignificantZeros(); //Делитель
+
             while (dividend.size() >= divider.size())
             {
+                //Выделяем часть делимого, равную по размеру делителю
                 string temp_str = dividend.ToString().Substring(0, divider.size());
+                //То, что останется после сложения делителя и части делимого в виде строки
                 string new_dividend = (new BinaryString(temp_str) + divider).cutUnsignificantZeros().ToString();
-                if (dividend.size() > divider.size())
+                if (dividend.size() > divider.size()) //Присоединяем оставшийся кусок делимого
                     new_dividend += dividend.ToString().Substring(divider.size(), dividend.size() - divider.size());
                 dividend = new BinaryString(new_dividend);
                 dividend = dividend.cutUnsignificantZeros();
@@ -215,6 +217,11 @@ namespace BChH
             return dividend;
         }
 
+        //public static BinaryString operator /(BinaryString bin_str1, BinaryString bin_str2)
+        //{ 
+            
+        //}
+        
         public char this[int index]
         {
             get

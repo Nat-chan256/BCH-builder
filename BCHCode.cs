@@ -9,11 +9,12 @@ namespace BChH
 {
     class BCHCode
     {
-        private int n_, d_;
+        private int n_, d_, k_;
         private GF2 galois_field_;
         private BinaryString alpha_;
         private string text_;
         Form3 previous_form_;
+        private BinaryString code_polynomial_;
 
         public int n
         {
@@ -26,6 +27,11 @@ namespace BChH
         public int d
         {
             get { return d_; }
+        }
+        public int k
+        {
+            get { return k_; }
+            set { k_ = value; }
         }
         public BinaryString alpha
         {
@@ -150,7 +156,7 @@ namespace BChH
             text_ += "\n\nСреди делителей полинома x^" + (Math.Pow(2, m) - 1) + " + 1 ищем минимальный для каждого "
                 + "цикломатического класса:";
             string main_pol_dividers = "";
-            BinaryString main_polynomial = new BinaryString("1");
+            code_polynomial_ = new BinaryString("1");
             int cur_cycl_class = 0;
             for (int i = 0; i < polynomials_to_check.Count && cur_cycl_class < cyclomatic_classes.Count; ++i)
             {
@@ -187,22 +193,25 @@ namespace BChH
                     text_ += temp_str1 + temp_str2 + " = 0";
                     if (main_pol_dividers.Length > 0) main_pol_dividers += " * ";
                     main_pol_dividers += "(" + polynomials_to_check.ElementAt(i).transformToPolynomial() + ")";
-                    main_polynomial *= polynomials_to_check.ElementAt(i);
+                    code_polynomial_ *= polynomials_to_check.ElementAt(i);
                     cur_cycl_class++; i = -1;
                 }
             }
 
             text_ += "\n\nНаходим образующий многочлен для кода:\n";
             if (main_pol_dividers.Contains('*'))
-                text_ += "F(x) = " + main_pol_dividers + "     =     " + main_polynomial.transformToPolynomial() + "\n\n";
+                text_ += "F(x) = " + main_pol_dividers + "     =     " + code_polynomial_.transformToPolynomial() + "\n\n";
             else
-                text_ += "F(x) = " + main_polynomial.transformToPolynomial() + "\n\n";
+                text_ += "F(x) = " + code_polynomial_.transformToPolynomial() + "\n\n";
+
+            //Устанавливаем параметр k
+            k = n - code_polynomial_.degree;
         }
 
         public void show()
         {
             //Создаем форму, в которой отобразим текст
-            Form4 new_form = new Form4(previous_form_);
+            Form4 new_form = new Form4(previous_form_, code_polynomial_, n, k);
             previous_form_.Hide();
             new_form.text_box.Text = text_;
             new_form.text_box.Font = new_form.Font;

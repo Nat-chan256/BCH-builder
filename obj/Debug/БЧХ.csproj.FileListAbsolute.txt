@@ -23,3 +23,7 @@ C:\Учёбка и не учёбка\Проги\Git Repositories\BCH-builder\obj
 C:\Учёбка и не учёбка\Проги\Git Repositories\BCH-builder\obj\Debug\БЧХ.exe
 C:\Учёбка и не учёбка\Проги\Git Repositories\BCH-builder\obj\Debug\БЧХ.pdb
 C:\Учёбка и не учёбка\Проги\Git Repositories\BCH-builder\obj\Debug\БЧХ.csproj.CoreCompileInputs.cache
+C:\Учёбка и не учёбка\Проги\Git Repositories\BCH-builder\obj\Debug\BChH.CodingForm.resources
+C:\Учёбка и не учёбка\Проги\Git Repositories\BCH-builder\obj\Debug\BChH.DecodingForm.resources
+C:\Учёбка и не учёбка\Проги\Git Repositories\BCH-builder\obj\Debug\BChH.ResultCodingForm.resources
+C:\Учёбка и не учёбка\Проги\Git Repositories\BCH-builder\obj\Debug\BChH.ResultDecodingForm.resources

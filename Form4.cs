@@ -15,15 +15,19 @@ namespace BChH
     public partial class Form4 : Form
     {
         private Form3 previous_form_;
-        public Form4(Form3 previous_form)
+        private CodingForm coding_form_;
+        private DecodingForm decoding_form_;
+        public Form4(Form3 previous_form, BinaryString polynomial, int n, int k)
         {
             InitializeComponent();
             previous_form_ = previous_form;
+            coding_form_ = new CodingForm(polynomial, n, k, this);
+            decoding_form_ = new DecodingForm(polynomial, n, k, this);
         }
 
         private void Form4_FormClosing(object sender, FormClosingEventArgs e)
         {
-            previous_form_.Show();
+            Application.Exit();
         }
 
         private void b_save_Click(object sender, EventArgs e)
@@ -51,6 +55,29 @@ namespace BChH
                 doc.Close();
                 app.Quit();
             }
+        }
+
+        private void b_code_Click(object sender, EventArgs e)
+        {
+            coding_form_.Show();
+            this.Hide();
+        }
+
+        private void b_back_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            previous_form_.Show();
+        }
+
+        private void text_box_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void b_decode_word_Click(object sender, EventArgs e)
+        {
+            decoding_form_.Show();
+            this.Hide();
         }
     }
 }

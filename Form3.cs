@@ -92,7 +92,7 @@ namespace BChH
                 {
                     for (int i = 1; i < field_size - 1; ++i)
                     {
-                        if (i > 600) break;
+                        if (i > 500) break; //Ограничиваем количество примитивных элементов
                         if (gcd(i, field_size - 1) == 1)
                         {
                             primitive_elems_.Add(galois_field_.Pow(first_primitive, i));
