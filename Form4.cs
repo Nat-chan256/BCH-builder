@@ -17,9 +17,15 @@ namespace BChH
         private Form3 previous_form_;
         private CodingForm coding_form_;
         private DecodingForm decoding_form_;
-        public Form4(Form3 previous_form, BinaryString polynomial, int n, int k)
+        private int d_;
+        public int d
+        {
+            get { return d_; }
+        }
+        public Form4(Form3 previous_form, BinaryString polynomial, int n, int k, int d)
         {
             InitializeComponent();
+            d_ = d;
             previous_form_ = previous_form;
             coding_form_ = new CodingForm(polynomial, n, k, this);
             decoding_form_ = new DecodingForm(polynomial, n, k, this);

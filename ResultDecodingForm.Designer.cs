@@ -51,7 +51,7 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.text_box.BackColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.text_box.Enabled = false;
+            this.text_box.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.text_box.ForeColor = System.Drawing.SystemColors.InactiveCaptionText;
             this.text_box.Location = new System.Drawing.Point(0, 9);
             this.text_box.Name = "text_box";

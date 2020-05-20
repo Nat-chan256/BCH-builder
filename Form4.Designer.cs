@@ -87,7 +87,6 @@
             // b_decode_word
             // 
             this.b_decode_word.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.b_decode_word.Enabled = false;
             this.b_decode_word.Location = new System.Drawing.Point(277, 556);
             this.b_decode_word.Name = "b_decode_word";
             this.b_decode_word.Size = new System.Drawing.Size(225, 33);

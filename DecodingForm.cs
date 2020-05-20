@@ -14,8 +14,15 @@ namespace BChH
     {
         private Form4 previous_form_;
         private int n_;
+        private int d_;
+        private int k_;
+        public int d
+        {
+            get { return d_; }
+        }
         private ResultDecodingForm next_form_;
         private BinaryString polynomial_;
+        
 
         public DecodingForm(BinaryString polynomial, int n, int k, Form4 prev_form)
         {
@@ -28,6 +35,8 @@ namespace BChH
             previous_form_ = prev_form;
 
             n_ = n;
+            d_ = prev_form.d;
+            k_ = k;
             polynomial_ = polynomial;
         }
 
@@ -68,10 +77,39 @@ namespace BChH
             //Очищаем текстБокс
             tb_code_word.Text = String.Empty;
 
-            //Генерируем слово
-            tb_code_word.Text += "1";
-            for (int i = 1; i < n_; ++i)
-                tb_code_word.Text += rand.Next(0, 2);
+            //Генерируем информационное слово
+            string inf_word_str = "1";
+            for (int i = 1; i < k_; ++i) 
+                inf_word_str += rand.Next(0, 2);
+
+            //Умножаем информационное слово на образующий многочлен
+            BinaryString code_word = new BinaryString(inf_word_str) * polynomial_;
+
+            //Генерируем количество ошибок
+            int num_of_mistakes = rand.Next(1, (d_ - 1) / 2 + 1);
+
+            //Генерируем первую позиции интервала, в котором будут находиться ошибки
+            int first_pos = 0;
+            if (k_ != 1)
+                first_pos = rand.Next(1, code_word.size() - polynomial_.size() - 1);
+
+            //Допускаем ошибки
+            string code_word_str = code_word.ToString();
+            for (int i = 0; i < num_of_mistakes; ++i)
+            {
+                int index = rand.Next(first_pos, first_pos + polynomial_.size());
+                code_word[index] = BinaryString.InverseChar(code_word[index]);
+            }
+
+            //Проверяем, есть ли ошибки в слове, и если нет, допускаем одну
+            if (code_word.ToString() == code_word_str)
+            {
+                int index = rand.Next(1, code_word.size());
+                code_word[index] = BinaryString.InverseChar(code_word[index]);
+            }
+
+            //Записываем в текстБокс
+            tb_code_word.Text += code_word.ToString();
         }
 
         private void b_decode_word_Click(object sender, EventArgs e)
@@ -89,6 +127,11 @@ namespace BChH
             next_form_ = new ResultDecodingForm(this, polynomial_, code_word);
             next_form_.Show();
             this.Hide();
+        }
+
+        private void DecodingForm_FormClosing_1(object sender, FormClosingEventArgs e)
+        {
+            Application.Exit();
         }
     }
 }

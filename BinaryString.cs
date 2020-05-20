@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http.Headers;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -217,11 +218,85 @@ namespace BChH
             return dividend;
         }
 
-        //public static BinaryString operator /(BinaryString bin_str1, BinaryString bin_str2)
-        //{ 
-            
-        //}
-        
+        public static BinaryString operator /(BinaryString bin_str1, BinaryString bin_str2)
+        {
+            if (bin_str1.cutUnsignificantZeros().size() < bin_str2.cutUnsignificantZeros().size()) 
+                return new BinaryString("0");
+
+            BinaryString dividend = bin_str1.cutUnsignificantZeros(); //Делимое
+            BinaryString divider = bin_str2.cutUnsignificantZeros(); //Делитель
+            string result_str = string.Empty;
+
+            while (dividend.size() >= divider.size())
+            {
+                result_str += "1";
+
+                //Кусок делимого, который будем складывать по модулю 2 с делителем 
+                //(по принципу деления в столбик)
+                string temp_div = dividend.ToString().Substring(0, divider.size());
+                BinaryString temp_dividend = new BinaryString(temp_div);
+
+                //Результат этого сложения
+                BinaryString cur_add_res = (temp_dividend + divider).cutUnsignificantZeros();
+
+                //Добавляем нули после текущей единицы, если необходимо
+                int num_of_zeros;
+                if (cur_add_res.size() == divider.size() - 1 && dividend.size() - divider.size() > 0)
+                    num_of_zeros = 0;
+                else if (dividend.size() - divider.size() < divider.size() - cur_add_res.size())
+                    num_of_zeros = dividend.size() - divider.size();
+                else
+                    num_of_zeros = divider.size() - cur_add_res.size() - 1;
+
+                for (int i = 0; i < num_of_zeros; ++i)
+                    result_str += "0";
+
+                dividend = new BinaryString(cur_add_res.ToString() + dividend.ToString().Substring(divider.size()));
+            }
+
+            return new BinaryString(result_str);
+        }
+
+        //Циклический слвиг вправо на num_of_pos позиций
+        public BinaryString RightCyclShift(int num_of_pos)
+        {
+            string left_substirng = this.ToString().Substring(0, this.size() - num_of_pos);
+            string right_substirng = this.ToString().Substring(this.size() - num_of_pos);
+            string result_string = String.Join("", new string[] { right_substirng, left_substirng });
+            //char[] result_str = this.ToString().ToCharArray();
+            //for (int i = 0; i < this.size(); ++i)
+            //{
+            //    //Индекс разряда, который будем менять местами с i-м разрядом
+            //    int index = (i < num_of_pos) ? this.size() - num_of_pos + i : i - num_of_pos;
+            //    char temp = result_str[index];
+            //    result_str[index] = result_str[i];
+            //    result_str[i] = temp;
+            //}
+
+            //string result_string = new string(result_str);
+            return new BinaryString(result_string);
+        }
+
+        //Циклический слвиг влево на num_of_pos позиций
+        public BinaryString LeftCyclShift(int num_of_pos)
+        {
+            string left_substirng = this.ToString().Substring(0, num_of_pos);
+            string right_substirng = this.ToString().Substring(num_of_pos);
+            string result_string = String.Join("", new string[] { right_substirng, left_substirng });
+            //char[] result_str = this.ToString().ToCharArray();
+            //for (int i = 0; i < this.size(); ++i)
+            //{
+            //    //Индекс разряда, который будем менять местами с i-м разрядом
+            //    int index = (i > result_str.Length - num_of_pos - 1) ? i%(result_str.Length - num_of_pos) : i + num_of_pos;
+            //    char temp = result_str[index];
+            //    result_str[index] = result_str[i];
+            //    result_str[i] = temp;
+            //}
+
+            //string result_string = new string(result_str);
+            return new BinaryString(result_string);
+        }
+
         public char this[int index]
         {
             get
@@ -237,21 +312,33 @@ namespace BChH
             set
             {
                 try
-                { string_.ToArray()[index] = value; }
+                {
+                    char[] char_arr = string_.ToCharArray();
+                    char_arr[index] = value;
+                    string_ = new string(char_arr); }
                 catch (IndexOutOfRangeException ex)
                 {
                     MessageBox.Show(ex.Message);
-                    throw;
                 }
             }
+        }
+
+        //Инверсия символа
+        public static char InverseChar(char symbol)
+        {
+            if (symbol == '0')
+                return '1';
+            else
+                return '0';
         }
 
         //Метод, убирающий незначащие нули вначале
         public BinaryString cutUnsignificantZeros()
         {
+            string result_str = this.ToString();
             if (weight() == 0) return new BinaryString("0");
-            string_ = string_.TrimStart('0');
-            return this;
+            result_str = result_str.TrimStart('0');
+            return new BinaryString(result_str);
         }
 
         public string transformToPolynomial()

@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(DecodingForm));
             this.b_back = new System.Windows.Forms.Button();
             this.b_code_word = new System.Windows.Forms.Button();
             this.l_polynomial = new System.Windows.Forms.Label();
@@ -143,9 +144,11 @@
             this.Controls.Add(this.tb_code_word);
             this.Controls.Add(this.l_k);
             this.Controls.Add(this.l_n);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "DecodingForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "DecodingForm";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.DecodingForm_FormClosing_1);
             this.ResumeLayout(false);
             this.PerformLayout();
 

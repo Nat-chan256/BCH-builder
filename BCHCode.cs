@@ -211,7 +211,7 @@ namespace BChH
         public void show()
         {
             //Создаем форму, в которой отобразим текст
-            Form4 new_form = new Form4(previous_form_, code_polynomial_, n, k);
+            Form4 new_form = new Form4(previous_form_, code_polynomial_, n, k, d_);
             previous_form_.Hide();
             new_form.text_box.Text = text_;
             new_form.text_box.Font = new_form.Font;
